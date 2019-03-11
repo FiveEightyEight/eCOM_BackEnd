@@ -1,16 +1,16 @@
-| | | | | | |Member|
+|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|Member|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |id|username|email|password|bio|token|
 
 ____
 
-| | | | | | |Posts|
+|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|Posts|
 |:-:|:-:|:---:|:---:|:---:|:---:|:---:|
 |id|member_id|image|title|body|date_created|
 
-| | | | | | |Comments|
+|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|Comments|
 |:-:|:-:|:---:|:---:|:---:|:---:|:---:|
-|id|member_id|post_id|titlebody|
+|id|member_id|post_id|titlebody|&nbsp;|&nbsp;|&nbsp;|
 
 
 |||||||Likes|
