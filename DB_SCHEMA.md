@@ -1,6 +1,10 @@
 |&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|Member|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |id|username|email|password|bio|token|
+
+```
+```
+
 ____
 |&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|&nbsp;|Posts|
 |:-:|:-:|:---:|:---:|:---:|:---:|:---:|
