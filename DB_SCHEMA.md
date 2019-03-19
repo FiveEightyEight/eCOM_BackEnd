@@ -22,6 +22,12 @@ ____
 |:----:|:------------:|:----------:|:-----:|:----------:|:-----:|
 |id    |member_id_from|member_id_to|post_id|date_created|       | 
 
+
+
+|&nbsp;|&nbsp;        |&nbsp;      |&nbsp; | &nbsp;     |Following|
+|:----:|:------------:|:----------:|:-----:|:----------:|:-----:|
+|id    |member_id_following|member_id_followed|date_created|       | 
+
 |&nbsp;|&nbsp;|&nbsp;  |Tags   |
 |:----:|:----:|:------:|:-----:|
 |id    |name  |post_ids|&nbsp; |
