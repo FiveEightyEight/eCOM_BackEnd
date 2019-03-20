@@ -57,6 +57,6 @@ CREATE TABLE follow
     FOREIGN KEY (follower_id) REFERENCES members(id)
     ON UPDATE NO ACTION ON DELETE CASCADE,
     CONSTRAINT followed_id_fkey 
-    FOREIGN KEY (followed) REFERENCES members(id)
+    FOREIGN KEY (followed_id) REFERENCES members(id)
     ON UPDATE NO ACTION ON DELETE CASCADE
 );
