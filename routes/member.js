@@ -6,4 +6,4 @@ MemberRoutes.use('/', (req, res) => {
     });
 });
 
-module.exports = MemberRoutes;
+module.exports = {MemberRoutes,};
