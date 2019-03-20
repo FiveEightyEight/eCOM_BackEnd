@@ -35,6 +35,22 @@ CREATE TABLE posts
     ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
+CREATE TABLE comments
+( 
+    id SERIAL PRIMARY KEY,
+    member_id INT NOT NULL,
+    post_id INT NOT NULL,
+    caption VARCHAR(255),
+    date_created TIMESTAMP NOT NULL,
+    date_updated TIMESTAMP,
+    CONSTRAINT member_id_fkey 
+    FOREIGN KEY (member_id) REFERENCES members(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT post_id_fkey 
+    FOREIGN KEY (post_id) REFERENCES posts(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
 CREATE TABLE likes
 (
     id SERIAL PRIMARY KEY,
