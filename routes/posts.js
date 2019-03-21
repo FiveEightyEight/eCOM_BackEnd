@@ -6,4 +6,4 @@ PostRoutes.use('/', (req, res) => {
     });
 });
 
-module.exports = PostRoutes;
+module.exports = {PostRoutes,};

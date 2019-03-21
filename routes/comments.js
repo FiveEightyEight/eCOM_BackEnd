@@ -6,4 +6,4 @@ CommentRoutes.use('/', (req, res) => {
     });
 });
 
-module.exports = CommentRoutes;
+module.exports = {CommentRoutes,};
