@@ -7,6 +7,12 @@ app.use('/members', MemberRoutes);
 app.use('/posts', PostRoutes);
 app.use('/comments', CommentRoutes);
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: 'home'
+    });
+});
+
 app.use('*', (req, res) => {
     res.status(404).json({
         message: 'page not found'
