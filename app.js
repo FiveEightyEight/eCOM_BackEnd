@@ -1,5 +1,5 @@
 const app = require('express')();
-const {MemberRoutes,} = require('./routes/member');
+const {MemberRoutes,} = require('./routes/members');
 const {PostRoutes,} = require('./routes/posts');
 const {CommentRoutes,} = require('./routes/comments');
 
