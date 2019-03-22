@@ -4,9 +4,9 @@
   "description": "backend for ecom",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "start:local": "$(npm bin)/nodemon index.js &",
-    "test": "$(npm bin)/jest --coverage && cat ./coverage/lcov.info | $(npm bin)/coveralls"
+    "test": "$(npm bin)/jest --coverage && cat ./coverage/lcov.info | $(npm bin)/coveralls",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
