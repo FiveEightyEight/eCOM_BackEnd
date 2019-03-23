@@ -13,10 +13,10 @@ const create = (username, email, password, date_created) => {
 };
 
 
-const read = (email) => {
+const read = (username) => {
     return db.one(`SELECT * FROM members 
-    WHERE email = $[email];`, {
-        email,
+    WHERE username = $[username];`, {
+        username,
     });
 };
 
