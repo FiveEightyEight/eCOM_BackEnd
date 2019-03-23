@@ -58,10 +58,16 @@ const update = (id, username, email, password) => {
     WHERE members.id = $[id];`, obj);
 };
 
+const deleteMember = (username) => {
+    return db.result(`
+    DELETE FROM members WHERE members.username = $[username];`, {username});
+}
+
 
 module.exports = {
     create,
     read,
     readToken,
     update,
+    deleteMember
 };
