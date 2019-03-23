@@ -23,7 +23,7 @@ MemberRoutes.post('/create', (req, res) => {
         })
         .catch(err => {
             res.status(400).json({
-                message: `unable to create user, try again`,
+                message: `unable to create member, try again`,
                 error: err,
 
             });
@@ -66,7 +66,26 @@ MemberRoutes.put('/update', (req, res) => {
         })
         .catch(err => {
             res.status(400).json({
-                message: `unable to update user, try again`,
+                message: `unable to update member, try again`,
+                error: err,
+
+            });
+        });
+});
+
+MemberRoutes.delete('/:member_username', (req, res) => {
+    const {
+        member_username
+    } = req.params;
+    MemberServices.deleteMember(member_username)
+        .then(stat => {
+            res.status(200).json({
+                message: `${member_username} successfully deleted`
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `unable to delete member, try again`,
                 error: err,
 
             });
