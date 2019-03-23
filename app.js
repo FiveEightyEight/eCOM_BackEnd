@@ -1,7 +1,13 @@
 const app = require('express')();
+const bodyParser = require('body-parser')
 const {MemberRoutes,} = require('./routes/members');
 const {PostRoutes,} = require('./routes/posts');
 const {CommentRoutes,} = require('./routes/comments');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 app.use('/members', MemberRoutes);
 app.use('/posts', PostRoutes);
