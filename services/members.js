@@ -8,9 +8,28 @@ const create = (username, email, password, date_created) => {
         password,
         date_created,
     });
-}
+};
+
+
+const read = (email) => {
+    return db.one(`SELECT * FROM members 
+    WHERE email = $[email];`, {
+        email,
+    });
+};
+
+const readToken = (token) => {
+    return db.one(`SELECT * FROM members 
+    WHERE token = $[token];`, {
+        token
+    });
+};
+
+const update = (id, username, email, password) => {
+
+};
 
 
 module.exports = {
     create,
-}
+};

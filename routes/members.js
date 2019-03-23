@@ -22,7 +22,6 @@ MemberRoutes.post('/create', (req, res) =>{
 
         });
     });
-
 });
 
 MemberRoutes.use('/', (req, res) => {
