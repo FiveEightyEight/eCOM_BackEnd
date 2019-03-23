@@ -24,6 +24,24 @@ MemberRoutes.post('/create', (req, res) =>{
     });
 });
 
+MemberRoutes.put('/update', (req, res) => {
+    const { id, username, email, password } = req.body
+    if(!validator.isEmail(email)) res.status(400).json({error: 'email not valid'});
+    MemberServices.update(id, username, email, password)
+    .then( _=> {
+        res.status(200).json({
+            message: `success, ${username} updated`,
+        });
+    })
+    .catch( err => {
+        res.status(400).json({
+            message: `unable to update user, try again`,
+            error: err,
+
+        });
+    });
+});
+
 MemberRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Member page not found'
