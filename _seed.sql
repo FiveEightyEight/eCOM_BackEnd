@@ -1,7 +1,11 @@
-DROP DATABASE IF EXISTS silkroad;
-CREATE DATABASE silkroad;
-
-\c silkroad;
+DROP TABLE IF EXISTS members CASCADE;
+DROP TABLE IF EXISTS messages CASCADE;
+DROP TABLE IF EXISTS replies CASCADE;
+DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS comments CASCADE;
+DROP TABLE IF EXISTS items CASCADE;
+DROP TABLE IF EXISTS likes CASCADE;
+DROP TABLE IF EXISTS follows CASCADE;
 
 CREATE TABLE members
 (
@@ -21,7 +25,6 @@ CREATE TABLE messages
     recipient_id INT NOT NULL,
     message VARCHAR(255),
     date_created TIMESTAMP NOT NULL,
-    date_updated TIMESTAMP,
     CONSTRAINT author_id_fkey 
     FOREIGN KEY (author_id) REFERENCES members(id)
     ON DELETE NO ACTION,
