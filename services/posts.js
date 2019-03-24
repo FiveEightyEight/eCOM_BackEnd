@@ -51,9 +51,9 @@ const update = (id, member_id, caption, date_updated) => {
     WHERE posts.id = $[id];`, obj);
 };
 
-const deleteMember = (username) => {
+const deletePost = (id) => {
     return db.result(`
-    DELETE FROM members WHERE members.username = $[username];`, {username});
+    DELETE FROM posts WHERE posts.id = $[id];`, {id});
 }
 
 
@@ -61,5 +61,5 @@ module.exports = {
     create,
     read,
     update,
-    deleteMember
+    deletePost
 };
