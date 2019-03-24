@@ -41,6 +41,31 @@ PostRoutes.get('/:post_id', (req, res) => {
     })
 });
 
+PostRoutes.put('/update/:post_id', (req, res) => {
+    // all fields must be passed in
+    const {
+        member_id,
+        caption,
+    } = req.body
+    const {
+        post_id
+    } = req.params;
+    const date_updated = moment().format('YYYY-MM-DD hh:mm:ss');
+    PostServices.update(post_id, member_id, caption, date_updated)
+        .then(_ => {
+            res.status(200).json({
+                message: `success, Post updated`,
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `unable to update post, try again`,
+                error: err,
+
+            });
+        });
+});
+
 PostRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Post not found'
