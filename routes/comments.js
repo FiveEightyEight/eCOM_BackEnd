@@ -41,6 +41,32 @@ CommentRoutes.get('/:comment_id', (req, res) => {
         })
 });
 
+CommentRoutes.put('/update/:comment_id', (req, res) => {
+    // all fields must be passed in
+    const {
+        member_id,
+        post_id,
+        caption,
+    } = req.body
+    const {
+        comment_id
+    } = req.params;
+    const date_updated = moment().format('YYYY-MM-DD hh:mm:ss');
+    CommentServices.update(comment_id, member_id, post_id, caption, date_updated)
+        .then(_ => {
+            res.status(200).json({
+                message: `success, comment updated`,
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `unable to update post, try again`,
+                error: err,
+
+            });
+        });
+});
+
 CommentRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Comment not found'
