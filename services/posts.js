@@ -12,10 +12,10 @@ const create = (member_id, caption, date_created) => {
 };
 
 
-const read = (member_id) => {
+const read = (id) => {
     return db.one(`SELECT * FROM posts 
-    WHERE member_id = $[member_id];`, {
-        member_id,
+    WHERE posts.id = $[id];`, {
+        id,
     });
 };
 
