@@ -25,6 +25,7 @@ CREATE TABLE messages
     recipient_id INT NOT NULL,
     message VARCHAR(255),
     date_created TIMESTAMP NOT NULL,
+    date_updated TIMESTAMP,
     CONSTRAINT author_id_fkey 
     FOREIGN KEY (author_id) REFERENCES members(id)
     ON DELETE NO ACTION,

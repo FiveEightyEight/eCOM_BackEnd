@@ -1,6 +1,9 @@
 const MessageRoutes = require('express').Router();
 const MessageServices = require('../services/messages');
+const {ReplyRoutes,} = require('./replies');
 const moment = require('moment');
+
+MessageRoutes.use('/replies', ReplyRoutes);
 
 MessageRoutes.post('/create', (req, res) => {
     const {
