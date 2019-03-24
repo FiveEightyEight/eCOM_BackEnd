@@ -3,7 +3,7 @@ const {
 } = require('./db');
 
 const create = (member_id, post_id, caption, date_created) => {
-    return db.none(`INSERT INTO comments (member_id, caption, date_created)
+    return db.none(`INSERT INTO comments (member_id, post_id, caption, date_created)
         VALUES ($[member_id], $[post_id], $[caption], $[date_created]);`, {
         member_id,
         post_id,
