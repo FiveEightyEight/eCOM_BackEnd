@@ -29,6 +29,22 @@ CREATE TABLE messages
     ON DELETE NO ACTION
 );
 
+CREATE TABLE replies
+( 
+    id SERIAL PRIMARY KEY,
+    member_id INT NOT NULL,
+    message_id INT NOT NULL,
+    caption VARCHAR(255),
+    date_created TIMESTAMP NOT NULL,
+    date_updated TIMESTAMP,
+    CONSTRAINT member_id_fkey 
+    FOREIGN KEY (member_id) REFERENCES members(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT message_id_fkey 
+    FOREIGN KEY (message_id) REFERENCES messages(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
 CREATE TABLE posts
 ( 
     id SERIAL PRIMARY KEY,
