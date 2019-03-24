@@ -24,6 +24,23 @@ PostRoutes.post('/create', (req, res) => {
     
 });
 
+PostRoutes.get('/:post_id', (req, res) => {
+    const {
+        post_id
+    } = req.params;
+    PostServices.read(post_id)
+    .then(data => {
+        res.status(200).json(data)
+    })
+    .catch(err => {
+        res.status(400).json({
+            message: `Could not locate post`,
+            error: err,
+
+        });
+    })
+});
+
 PostRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Post not found'
