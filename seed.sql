@@ -57,6 +57,19 @@ CREATE TABLE comments
     ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
+CREATE TABLE items
+( 
+    id SERIAL PRIMARY KEY,
+    member_id INT NOT NULL,
+    caption VARCHAR(255),
+    image MEDIUMTEXT,
+    date_created TIMESTAMP NOT NULL,
+    date_updated TIMESTAMP,
+    CONSTRAINT member_id_fkey 
+    FOREIGN KEY (member_id) REFERENCES members(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
 CREATE TABLE likes
 (
     id SERIAL PRIMARY KEY,
