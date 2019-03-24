@@ -17,10 +17,16 @@ CREATE TABLE members
 CREATE TABLE messages
 (
     id SERIAL PRIMARY KEY,
-    member_id INT NOT NULL,
+    author_id INT NOT NULL,
+    recipient_id INT NOT NULL,
     message VARCHAR(255),
     date_created TIMESTAMP NOT NULL,
-    FOREIGN KEY (member_id) REFERENCES members(id)
+    CONSTRAINT author_id_fkey 
+    FOREIGN KEY (author_id) REFERENCES members(id)
+    ON DELETE NO ACTION,
+    CONSTRAINT recipient_id_fkey 
+    FOREIGN KEY (recipient_id) REFERENCES members(id)
+    ON DELETE NO ACTION
 );
 
 CREATE TABLE posts
