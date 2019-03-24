@@ -67,6 +67,25 @@ CommentRoutes.put('/update/:comment_id', (req, res) => {
         });
 });
 
+CommentRoutes.delete('/:comment_id', (req, res) => {
+    const {
+        comment_id
+    } = req.params;
+    CommentServices.deleteComment(comment_id)
+        .then(stat => {
+            res.status(200).json({
+                message: `Post ${comment_id} successfully deleted`
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `unable to delete post, try again`,
+                error: err,
+
+            });
+        });
+});
+
 CommentRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Comment not found'
