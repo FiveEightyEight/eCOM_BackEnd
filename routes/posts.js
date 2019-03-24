@@ -9,19 +9,19 @@ PostRoutes.post('/create', (req, res) => {
     } = req.body
     const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
     PostServices.create(member_id, caption, date_created)
-    .then( _ => {
-        res.status(200).json({
-            message: `success, post created`,
-        });
-    })
-    .catch(err => {
-        res.status(400).json({
-            message: `unable to create post, try again`,
-            error: err,
+        .then(_ => {
+            res.status(200).json({
+                message: `success, post created`,
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `unable to create post, try again`,
+                error: err,
 
+            });
         });
-    });
-    
+
 });
 
 PostRoutes.get('/:post_id', (req, res) => {
@@ -29,16 +29,16 @@ PostRoutes.get('/:post_id', (req, res) => {
         post_id
     } = req.params;
     PostServices.read(post_id)
-    .then(data => {
-        res.status(200).json(data)
-    })
-    .catch(err => {
-        res.status(400).json({
-            message: `Could not locate post`,
-            error: err,
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not locate post`,
+                error: err,
 
-        });
-    })
+            });
+        })
 });
 
 PostRoutes.put('/update/:post_id', (req, res) => {
@@ -66,10 +66,31 @@ PostRoutes.put('/update/:post_id', (req, res) => {
         });
 });
 
+PostRoutes.delete('/:post_id', (req, res) => {
+    const {
+        post_id
+    } = req.params;
+    PostServices.deletePost(post_id)
+        .then(stat => {
+            res.status(200).json({
+                message: `Post ${post_id} successfully deleted`
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `unable to delete post, try again`,
+                error: err,
+
+            });
+        });
+});
+
 PostRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Post not found'
     });
 });
 
-module.exports = {PostRoutes,};
+module.exports = {
+    PostRoutes,
+};
