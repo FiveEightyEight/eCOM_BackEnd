@@ -24,6 +24,23 @@ CommentRoutes.post('/create', (req, res) => {
         });
 });
 
+CommentRoutes.get('/:comment_id', (req, res) => {
+    const {
+        comment_id
+    } = req.params;
+    CommentServices.read(comment_id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not locate comment`,
+                error: err,
+
+            });
+        })
+});
+
 CommentRoutes.use('/', (req, res) => {
     res.status(404).json({
         message: 'Comment not found'
