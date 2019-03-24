@@ -62,7 +62,7 @@ CREATE TABLE items
     id SERIAL PRIMARY KEY,
     member_id INT NOT NULL,
     caption VARCHAR(255),
-    image MEDIUMTEXT,
+    image VARCHAR,
     date_created TIMESTAMP NOT NULL,
     date_updated TIMESTAMP,
     CONSTRAINT member_id_fkey 
