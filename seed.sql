@@ -97,6 +97,8 @@ CREATE TABLE likes
     id SERIAL PRIMARY KEY,
     member_id INT NOT NULL,
     post_id INT NOT NULL,
+    date_created TIMESTAMP NOT NULL,
+    CONSTRAINT U_like UNIQUE (member_id,post_id),
     CONSTRAINT member_id_fkey 
     FOREIGN KEY (member_id) REFERENCES members(id)
     ON UPDATE NO ACTION ON DELETE CASCADE,
@@ -110,6 +112,8 @@ CREATE TABLE follows
     id SERIAL PRIMARY KEY,
     follower_id INT NOT NULL,
     followed_id INT NOT NULL,
+    date_created TIMESTAMP NOT NULL,
+    CONSTRAINT U_follow UNIQUE (follower_id,followed_id),
     CONSTRAINT follower_id_fkey 
     FOREIGN KEY (follower_id) REFERENCES members(id)
     ON UPDATE NO ACTION ON DELETE CASCADE,
