@@ -23,9 +23,9 @@ const read = (id) => {
 };
 
 
-const update = (id, member_id, date_updated, caption, price, image) => {
-    if (!member_id && !caption && !date_updated) {
-        console.log('UPDATE POST INFO FAILED @ Nothing to update')
+const update = (id, date_updated, caption, price, image, member_id,) => {
+    if (!caption && !date_updated) {
+        console.log('UPDATE ITEM INFO FAILED @ Nothing to update')
         return new Promise((resolve, reject) => {
             reject(new Error('Nothing to update'));
         });
