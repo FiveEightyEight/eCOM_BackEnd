@@ -3,8 +3,9 @@ const {
 } = require('./db');
 
 const create = (member_id, caption, date_created) => {
-    return db.none(`INSERT INTO posts (member_id, caption, date_created)
-        VALUES ($[member_id], $[caption], $[date_created]);`, {
+    return db.one(`INSERT INTO posts (member_id, caption, date_created)
+        VALUES ($[member_id], $[caption], $[date_created])
+        RETURNING id;`, {
         member_id,
         caption,
         date_created,
