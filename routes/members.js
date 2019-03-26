@@ -1,8 +1,11 @@
 const MemberServices = require('../services/members');
+const {ItemRoutes,} = require('./items');
 const moment = require('moment');
 const validator = require('validator');
 
 const MemberRoutes = require('express').Router();
+
+MemberRoutes.use('/items', ItemRoutes);
 
 MemberRoutes.post('/create', (req, res) => {
     const {
