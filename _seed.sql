@@ -84,10 +84,15 @@ CREATE TABLE items
     member_id INT NOT NULL,
     caption VARCHAR(255),
     image VARCHAR,
+    price FLOAT,
+    post_id INT NOT NULL,
     date_created TIMESTAMP NOT NULL,
     date_updated TIMESTAMP,
     CONSTRAINT member_id_fkey 
     FOREIGN KEY (member_id) REFERENCES members(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+    CONSTRAINT post_id_fkey 
+    FOREIGN KEY (post_id) REFERENCES posts(id)
     ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
