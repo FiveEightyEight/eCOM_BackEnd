@@ -28,12 +28,24 @@ const readById = (id) => {
         });
 };
 
+const readByUid = (uid) => {
+    return db.one(`SELECT * FROM members 
+    WHERE members.uid = $[uid];`, {
+            uid,
+        });
+};
+
 const readToken = (token) => {
     return db.one(`SELECT * FROM members 
     WHERE token = $[token];`, {
             token
         });
 };
+
+const login = (uid, date) => {
+    return db.one(`UPDATE members SET last_login = $[date]
+    WHERE members.uid = $[uid] RETURNING id;`, {uid, date});
+} 
 
 const update = (id, username, email, password) => {
     if (!username && !email && !password) {
@@ -76,7 +88,9 @@ module.exports = {
     create,
     read,
     readById,
+    readByUid,
     readToken,
+    login,
     update,
     deleteMember
 };
