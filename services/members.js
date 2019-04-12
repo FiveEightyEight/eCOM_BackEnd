@@ -2,29 +2,30 @@ const {
     db,
 } = require('./db');
 
-const create = (username, email, password, date_created) => {
-    return db.none(`INSERT INTO members (username, email, password, date_created)
-        VALUES ($[username], $[email], $[password], $[date_created]);`, {
-        username,
-        email,
-        password,
-        date_created,
-    });
+const create = (username, email, password, uid, date_created) => {
+    return db.none(`INSERT INTO members (uid, username, email, password, date_created)
+        VALUES ($[uid], $[username], $[email], $[password], $[date_created]);`, {
+            uid,
+            username,
+            email,
+            password,
+            date_created,
+        });
 };
 
 
 const read = (username) => {
     return db.one(`SELECT * FROM members 
     WHERE username = $[username];`, {
-        username,
-    });
+            username,
+        });
 };
 
 const readToken = (token) => {
     return db.one(`SELECT * FROM members 
     WHERE token = $[token];`, {
-        token
-    });
+            token
+        });
 };
 
 const update = (id, username, email, password) => {
@@ -60,7 +61,7 @@ const update = (id, username, email, password) => {
 
 const deleteMember = (username) => {
     return db.result(`
-    DELETE FROM members WHERE members.username = $[username];`, {username});
+    DELETE FROM members WHERE members.username = $[username];`, { username });
 }
 
 

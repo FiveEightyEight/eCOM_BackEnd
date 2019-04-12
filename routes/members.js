@@ -15,14 +15,15 @@ MemberRoutes.post('/create', (req, res) => {
     const {
         username,
         email,
-        password
+        password, 
+        uid
     } = req.body
     if (!validator.isEmail(email)) res.status(400).json({
         error: 'email not valid'
     });
     // needs username & password validation
     const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
-    MemberServices.create(username, email, password, date_created)
+    MemberServices.create(username, email, password, uid, date_created)
         .then(_ => {
             res.status(200).json({
                 message: `success, ${username} created`,
