@@ -3,8 +3,8 @@ const {
 } = require('./db');
 
 const create = (username, email, password, uid, date_created) => {
-    return db.none(`INSERT INTO members (uid, username, email, password, date_created)
-        VALUES ($[uid], $[username], $[email], $[password], $[date_created]);`, {
+    return db.one(`INSERT INTO members (uid, username, email, password, date_created)
+        VALUES ($[uid], $[username], $[email], $[password], $[date_created]) RETURNING id;`, {
             uid,
             username,
             email,

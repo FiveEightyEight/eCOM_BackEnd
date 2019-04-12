@@ -24,8 +24,9 @@ MemberRoutes.post('/create', (req, res) => {
     // needs username & password validation
     const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
     MemberServices.create(username, email, password, uid, date_created)
-        .then(_ => {
+        .then(data => {
             res.status(200).json({
+                data,
                 message: `success, ${username} created`,
             });
         })
