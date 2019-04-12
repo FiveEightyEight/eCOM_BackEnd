@@ -21,6 +21,13 @@ const read = (username) => {
         });
 };
 
+const readById = (id) => {
+    return db.one(`SELECT * FROM members 
+    WHERE members.id = $[id];`, {
+            id,
+        });
+};
+
 const readToken = (token) => {
     return db.one(`SELECT * FROM members 
     WHERE token = $[token];`, {
@@ -68,6 +75,7 @@ const deleteMember = (username) => {
 module.exports = {
     create,
     read,
+    readById,
     readToken,
     update,
     deleteMember

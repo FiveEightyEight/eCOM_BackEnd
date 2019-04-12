@@ -39,6 +39,24 @@ MemberRoutes.post('/create', (req, res) => {
         });
 });
 
+MemberRoutes.get('/:id', (req, res, next) => {
+    const {
+        id
+    } = req.params;
+    if(!id.match(/[0-9]/g))next();
+    MemberServices.readById(id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not locate member`,
+                error: err,
+
+            });
+        })
+});
+
 MemberRoutes.get('/:member_username', (req, res) => {
     const {
         member_username
