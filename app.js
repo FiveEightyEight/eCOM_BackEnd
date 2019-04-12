@@ -1,5 +1,6 @@
 const app = require('express')();
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const {MemberRoutes,} = require('./routes/members');
 const {PostRoutes,} = require('./routes/posts');
 const {CommentRoutes,} = require('./routes/comments');
@@ -9,6 +10,8 @@ const {MessageRoutes,} = require('./routes/messages');
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+
+app.use(cors())
 
 app.use('/members', MemberRoutes);
 app.use('/posts', PostRoutes);

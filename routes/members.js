@@ -1,7 +1,7 @@
 const MemberServices = require('../services/members');
-const {ItemRoutes,} = require('./items');
-const {LikeRoutes,} = require('./likes');
-const {FollowRoutes,} = require('./follows');
+const { ItemRoutes, } = require('./items');
+const { LikeRoutes, } = require('./likes');
+const { FollowRoutes, } = require('./follows');
 const moment = require('moment');
 const validator = require('validator');
 
@@ -15,16 +15,18 @@ MemberRoutes.post('/create', (req, res) => {
     const {
         username,
         email,
-        password
+        password,
+        uid
     } = req.body
     if (!validator.isEmail(email)) res.status(400).json({
         error: 'email not valid'
     });
     // needs username & password validation
     const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
-    MemberServices.create(username, email, password, date_created)
-        .then(_ => {
+    MemberServices.create(username, email, password, uid, date_created)
+        .then(data => {
             res.status(200).json({
+                data,
                 message: `success, ${username} created`,
             });
         })
@@ -35,6 +37,41 @@ MemberRoutes.post('/create', (req, res) => {
 
             });
         });
+});
+
+MemberRoutes.get('/uid', (req, res) => {
+    const {
+        uid
+    } = req.query;
+    MemberServices.readByUid(uid)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not locate member`,
+                error: err,
+
+            });
+        })
+});
+
+MemberRoutes.get('/:id', (req, res, next) => {
+    const {
+        id
+    } = req.params;
+    if (!id.match(/[0-9]/g)) next();
+    MemberServices.readById(id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not locate member`,
+                error: err,
+
+            });
+        })
 });
 
 MemberRoutes.get('/:member_username', (req, res) => {
@@ -53,6 +90,25 @@ MemberRoutes.get('/:member_username', (req, res) => {
             });
         })
 });
+
+MemberRoutes.put('/login', (req, res) => {
+    const {
+        uid
+    } = req.query;
+    const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
+    MemberServices.login(uid, date_created)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not locate member`,
+                error: err,
+
+            });
+        })
+
+})
 
 MemberRoutes.put('/update', (req, res) => {
     // all fields must be passed in

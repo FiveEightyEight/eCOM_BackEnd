@@ -10,12 +10,14 @@ DROP TABLE IF EXISTS follows CASCADE;
 CREATE TABLE members
 (
     id SERIAL PRIMARY KEY,
+    uid VARCHAR UNIQUE NOT NULL,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR NOT NULL,
     date_created TIMESTAMP NOT NULL,
     last_login TIMESTAMP,
-    token VARCHAR
+    token VARCHAR,
+    bio VARCHAR(255)
 );
 
 CREATE TABLE messages

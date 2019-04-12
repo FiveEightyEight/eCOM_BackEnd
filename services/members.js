@@ -2,30 +2,50 @@ const {
     db,
 } = require('./db');
 
-const create = (username, email, password, date_created) => {
-    return db.none(`INSERT INTO members (username, email, password, date_created)
-        VALUES ($[username], $[email], $[password], $[date_created]);`, {
-        username,
-        email,
-        password,
-        date_created,
-    });
+const create = (username, email, password, uid, date_created) => {
+    return db.one(`INSERT INTO members (uid, username, email, password, date_created)
+        VALUES ($[uid], $[username], $[email], $[password], $[date_created]) RETURNING id;`, {
+            uid,
+            username,
+            email,
+            password,
+            date_created,
+        });
 };
 
 
 const read = (username) => {
     return db.one(`SELECT * FROM members 
     WHERE username = $[username];`, {
-        username,
-    });
+            username,
+        });
+};
+
+const readById = (id) => {
+    return db.one(`SELECT * FROM members 
+    WHERE members.id = $[id];`, {
+            id,
+        });
+};
+
+const readByUid = (uid) => {
+    return db.one(`SELECT * FROM members 
+    WHERE members.uid = $[uid];`, {
+            uid,
+        });
 };
 
 const readToken = (token) => {
     return db.one(`SELECT * FROM members 
     WHERE token = $[token];`, {
-        token
-    });
+            token
+        });
 };
+
+const login = (uid, date) => {
+    return db.one(`UPDATE members SET last_login = $[date]
+    WHERE members.uid = $[uid] RETURNING id;`, {uid, date});
+} 
 
 const update = (id, username, email, password) => {
     if (!username && !email && !password) {
@@ -60,14 +80,17 @@ const update = (id, username, email, password) => {
 
 const deleteMember = (username) => {
     return db.result(`
-    DELETE FROM members WHERE members.username = $[username];`, {username});
+    DELETE FROM members WHERE members.username = $[username];`, { username });
 }
 
 
 module.exports = {
     create,
     read,
+    readById,
+    readByUid,
     readToken,
+    login,
     update,
     deleteMember
 };
