@@ -6,12 +6,11 @@ const {PostRoutes,} = require('./routes/posts');
 const {CommentRoutes,} = require('./routes/comments');
 const {MessageRoutes,} = require('./routes/messages');
 
+app.use(cors())
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-
-app.use(cors())
 
 app.use('/members', MemberRoutes);
 app.use('/posts', PostRoutes);
