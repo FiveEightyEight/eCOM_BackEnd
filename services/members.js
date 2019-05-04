@@ -22,7 +22,10 @@ const read = (username) => {
 };
 
 const readById = (id) => {
-    return db.one(`SELECT * FROM members 
+    return db.any(`SELECT posts.id AS post_id, * 
+    FROM members 
+    FULL JOIN posts
+    ON members.id = posts.member_id
     WHERE members.id = $[id];`, {
             id,
         });

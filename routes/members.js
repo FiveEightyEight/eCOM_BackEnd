@@ -60,6 +60,7 @@ MemberRoutes.get('/:id', (req, res, next) => {
     const {
         id
     } = req.params;
+    console.log(id)
     if (!id.match(/[0-9]/g)) next();
     MemberServices.readById(id)
         .then(data => {
@@ -93,7 +94,9 @@ MemberRoutes.get('/:member_username', (req, res) => {
 
 MemberRoutes.put('/login', (req, res) => {
     const {
-        uid
+        uid,
+        email, 
+        lastSignInTime,
     } = req.query;
     const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
     MemberServices.login(uid, date_created)
