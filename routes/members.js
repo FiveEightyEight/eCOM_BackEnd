@@ -93,7 +93,9 @@ MemberRoutes.get('/:member_username', (req, res) => {
 
 MemberRoutes.put('/login', (req, res) => {
     const {
-        uid
+        uid,
+        email, 
+        lastSignInTime,
     } = req.query;
     const date_created = moment().format('YYYY-MM-DD hh:mm:ss');
     MemberServices.login(uid, date_created)
