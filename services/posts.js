@@ -14,7 +14,10 @@ const create = (member_id, caption, date_created) => {
 
 
 const read = (id) => {
-    return db.one(`SELECT * FROM posts 
+    return db.one(`SELECT * 
+    FROM posts 
+    JOIN members
+    ON posts.member_id = members.id
     WHERE posts.id = $[id];`, {
         id,
     });

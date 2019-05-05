@@ -60,7 +60,6 @@ MemberRoutes.get('/:id', (req, res, next) => {
     const {
         id
     } = req.params;
-    console.log(id)
     if (!id.match(/[0-9]/g)) next();
     MemberServices.readById(id)
         .then(data => {
