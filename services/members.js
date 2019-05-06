@@ -45,6 +45,11 @@ const readToken = (token) => {
         });
 };
 
+const allMembers = () => {
+    return db.any(`SELECT id AS user_id, username, last_login, bio
+    FROM members`);
+};
+
 const login = (uid, date) => {
     return db.one(`UPDATE members SET last_login = $[date]
     WHERE members.uid = $[uid] RETURNING id;`, {uid, date});
