@@ -23,6 +23,12 @@ const read = (id) => {
     });
 };
 
+const allPosts = () => {
+    return db.any(`SELECT * 
+    FROM posts 
+    JOIN members
+    ON posts.member_id = members.id;`);
+};
 
 const update = (id, member_id, caption, date_updated) => {
     if (!member_id && !caption && !date_updated) {
@@ -64,6 +70,7 @@ const deletePost = (id) => {
 module.exports = {
     create,
     read,
+    allPosts,
     update,
     deletePost
 };
