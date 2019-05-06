@@ -22,7 +22,7 @@ const read = (username) => {
 };
 
 const readById = (id) => {
-    return db.any(`SELECT posts.id AS post_id, * 
+    return db.any(`SELECT members.id AS user_id, posts.id AS post_id, * 
     FROM members 
     FULL JOIN posts
     ON members.id = posts.member_id
@@ -43,6 +43,11 @@ const readToken = (token) => {
     WHERE token = $[token];`, {
             token
         });
+};
+
+const allMembers = () => {
+    return db.any(`SELECT id AS user_id, username, last_login, bio
+    FROM members`);
 };
 
 const login = (uid, date) => {
@@ -93,6 +98,7 @@ module.exports = {
     readById,
     readByUid,
     readToken,
+    allMembers,
     login,
     update,
     deleteMember

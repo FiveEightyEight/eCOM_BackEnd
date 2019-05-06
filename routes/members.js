@@ -56,6 +56,21 @@ MemberRoutes.get('/uid', (req, res) => {
         })
 });
 
+MemberRoutes.get('/all', (req, res) => {
+    MemberServices.allMembers()
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: `Could not retrieve member list`,
+                error: err,
+
+            });
+        })
+});
+
+
 MemberRoutes.get('/:id', (req, res, next) => {
     const {
         id
