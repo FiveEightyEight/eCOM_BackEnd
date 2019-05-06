@@ -24,7 +24,7 @@ const read = (id) => {
 };
 
 const allPosts = () => {
-    return db.any(`SELECT members.id AS user_id, * 
+    return db.any(`SELECT members.id AS user_id, posts.date_created AS post_created, posts.id AS post_id, * 
     FROM posts 
     JOIN members
     ON posts.member_id = members.id;`);
